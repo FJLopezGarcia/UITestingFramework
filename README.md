@@ -7,4 +7,6 @@
 - Protractor E2E test framework for AngularJS applications: run your e2e or integration tests created with Jasmine. (Selenium and Webdriver)
 - Grunt: Your JavaScript Task Runner
 - Bower: Power demand packages
-- Accessibility plugin - Added same audit library used by the Chrome browser extension
+- Accessibility plugin 
+-- Added same audit library used by the Chrome browser extension
+-- Also added the AXE accessibility engine
