@@ -77,11 +77,29 @@ exports.config = {
     // Patterns to exclude.
   exclude: [
   ],
+  plugins: [
+      //Accessibility Plugin
+      {
+        //github.com/angular/protractor/tree/master/plugins
+        //Basic hooks that we have for a plugin now are :
+        // - setup(config) -- > running on your test setup --> And then, plugins can modify the results based on what they return.
+        // - teardown(config) --> tear down after all the tests have finished --> And then, plugins can modify the results based on what they return.
+        // - posttest(config) --> after each test case --> And then, plugins can modify the results based on what they return.
+
+        //So even if you had a test that had a bunch of assertions that were passing, if your plugin thinks that something is wrong and should be failing, 
+        //you can modify the test output, cause, and exit code of one, fail the continuous integration build, etcetera.
+        //So this is shipping, with the latest version of Protractor v1.8.0.
+        chromeA11YDevTools: {
+            treatWarningsAsFailures: false //just to notify about them.
+        },
+        path: '../../../test/resources/node_modules/protractor/plugins/accessibility',
+      }
+  ],
 
     //Separate your tests in various test suites: protractor protractor.conf.js --suite homepage
   suites: {
-      home: '../../../test/javascript/e2e/**/home.spec.js',
-      full: '../../../test/javascript/e2e/**/*.spec/*.js'
+        home: '../../../test/javascript/e2e/**/home.spec.js',
+        full: '../../../test/javascript/e2e/**/*.spec/*.js'
   },
 
   onPrepare: function () {

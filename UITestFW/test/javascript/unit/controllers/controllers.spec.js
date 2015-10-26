@@ -53,7 +53,8 @@ describe('Suite 2) AXE - Accessibility Engine plugin', function () {
     it('AXE - Accessibility Engine plugin: Should report that bad HTML is bad', function (done) {
         var n = document.getElementById('broken');
         axe.a11yCheck(n, null, function (result) {
-            expect(result.violations.length).toBe(0);
+            // expect(result.violations.length).toBe(0);
+            expect(result.violations.length).not.toBe(0);
             done();
         });
     });

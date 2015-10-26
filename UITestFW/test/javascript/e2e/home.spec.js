@@ -1,3 +1,6 @@
+
+var AxeBuilder = require('../../resources/node_modules/axe-webdriverjs');
+
 'use strict';
 
 describe('E2E Test - Home:', function(){
@@ -5,6 +8,14 @@ describe('E2E Test - Home:', function(){
     browser.driver.get(browser.baseUrl); // navigate into the home page
 
     browser.sleep(3000);
+
+    //it('00) AXE - Accessibility Engine plugin - Should be accessible', function () {
+    //    AxeBuilder(browser.driver)
+    //        .analyze(function (results) {
+    //            console.log(results.violations)
+    //            expect(results.violations.length).toBe(0);
+    //        });
+    //});
 
     it('01) - Title', function () {
         expect(browser.driver.getTitle()).toEqual('Playlists');
