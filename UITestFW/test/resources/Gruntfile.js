@@ -1,9 +1,12 @@
 ﻿// # Globbing
 // for performance reasons we're only matching one level down:      'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:        'test/spec/**/*.js'
+'use strict';
+
+var ngrok = require('ngrok');
 
 module.exports = function (grunt) {
-    'use strict';
+
 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
@@ -16,7 +19,35 @@ module.exports = function (grunt) {
 
     //Project and task configuration 
     grunt.initConfig({
-          
+
+        yslow: {            pages: {                files: [{                    src: "http://localhost:8100/",                }],                options: {                    yslowOptions: {                        headers: ""   //(object) - an object where keys are the header names and values are the values of additional headers to add to the request                    },                    thresholds: {                        weight: 500, //The maximum page weight allowed (kb).                        speed: 5000, //The maximum load time of the page allowed (ms).                        score: 90,   //The minimum YSlow performance score (out of 100) required.                        requests: 15 //The maximum number of requests the page is allowed to send on load.                    }                }            }        },
+
+        pagespeed: {
+            //https://www.npmjs.com/package/grunt-pagespeed
+            options: {
+                nokey: true,
+                locale: "en_GB",
+                threshold: 10
+            },
+            mobile: {
+                options: {
+                    strategy: "mobile",
+                    locale: "en_GB"
+                }
+            },
+            paths: {
+                options: {
+                    paths: [
+                        "/#/app/playlists",
+                        "/#/app/search"
+                    ],
+                    locale: "en_GB",
+                    strategy: "mobile",
+                    threshold: 10
+                }
+            }
+        },
+
         //Plugin: Detect errors and potential problems in JavaScript code 
         //and to enforce your team"s coding conventions.
         jshint: {
@@ -65,6 +96,27 @@ module.exports = function (grunt) {
         }
     });
 
+
+    
+    //yslow
+    grunt.registerTask('test:yslow', ['yslow']);
+
+    //pagespeed
+    grunt.registerTask('test:pagespeed', ['psi-ngrok']);
+    grunt.registerTask('psi-ngrok', 'Run pagespeed with ngrok', function () {
+        var done = this.async();
+        var port = 8100;
+
+        ngrok.connect(port, function (err, url) {
+            if (err !== null) {
+                grunt.fail.fatal(err);
+                return done();
+            }
+            grunt.config.set('pagespeed.options.url', url);
+            grunt.task.run('pagespeed');
+            done();
+        });
+    });
 
     //Unit Test
     grunt.registerTask('test:unit', ['karma:unit']);            //autoWatch: false

@@ -1,21 +1,21 @@
 {
-    "name": "UITestingFramework",
-    "title": "UITestingFramework",
-    "version": "1.0.0",
-    "description": "UI Testing Framework",
-    "author": "francisco.j.lopez@accenture.com",
-     "keywords": [
-        "Karma",
-        "Protractor",
-        "Grunt",
-        "JSHint",
-        "Bower",
-        "Learn"
-    ],
+  "name": "UITestingFramework",
+  "title": "UITestingFramework",
+  "version": "1.0.0",
+  "description": "UI Testing Framework",
+  "author": "francisco.j.lopez@accenture.com",
+  "keywords": [
+    "Karma",
+    "Protractor",
+    "Grunt",
+    "JSHint",
+    "Bower",
+    "Learn"
+  ],
   "dependencies": {
     "axe-webdriverjs": "^0.2.0",
-    "phantomjs": "^1.9.18",
     "grunt": "^0.4.5",
+    "phantomjs": "^1.9.18",
     "grunt-concurrent": "^2.0.3",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-karma": "^0.12.1",
@@ -40,5 +40,10 @@
     "selenium-standalone": "^4.7.0",
     "selenium-webdriver": "^2.48.0",
     "time-grunt": "^1.2.1"
-    }
+  },
+  "devDependencies": {
+    "grunt-pagespeed": "^1.0.0",
+    "ngrok": "^0.1.94",
+    "grunt-yslow": "^0.0.4"
+  }
 }
