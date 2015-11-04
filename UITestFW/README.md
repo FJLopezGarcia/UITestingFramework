@@ -9,5 +9,6 @@
 7. Bower: Power demand packages
 8. Accessibility plugin: Added same audit library used by the Chrome browser extension (and also tested the AXE accessibility engine)
 9. Yslow and pagespeed (In progress) for Performance Test.
+10. JSCS — JavaScript Code Style --> http://jscs.info/ (in progress)
 
 [GitHub - markdown](https://guides.github.com/features/mastering-markdown/#intro)
